@@ -1,0 +1,13 @@
+on: push
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v2
+      - name: Testing with Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: emulators:exec --only firestore ./ci.bash
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
