@@ -1,20 +1,20 @@
-import SongSeeder from "./SongSeeder";
-import * as admin from 'firebase-admin'
+import SongSeeder from "./seeders/SongSeeder";
 
-process.env['FIRESTORE_EMULATOR_HOST'] = 'localhost:8080'
 
 async function main() {
-    const app = admin.initializeApp({
-        projectId: 'spotify-clone-5ed36'
-    })
+    let startAt = new Date()
+
     const seeders: any[] = [
         SongSeeder
     ]
 
     for (let seeder of seeders) {
-        const instance = new seeder(app)
+        const instance = new seeder()
         await instance.up()
+
     }
+
+    console.log('Finished in ' + (new Date().getTime() - startAt.getTime()) + 'ms')
 
 }
 

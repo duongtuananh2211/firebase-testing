@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "seed": "ts-node index.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/faker": "^5.5.7",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
+    "faker": "^5.5.3",
     "firebase-admin": "^9.10.0",
     "ts-node": "^10.1.0",
     "typescript": "^4.3.5"

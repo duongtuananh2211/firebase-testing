@@ -7,9 +7,11 @@ export default class Seeder {
     firestore: firestore.Firestore
     app: admin.app.App
 
-    constructor(app: admin.app.App) {
+    constructor() {
         console.log('Seeding ' + this.name)
-        this.app = app
+        this.app = admin.initializeApp({
+            projectId: 'spotify-clone-5ed36'
+        })
         this.firestore = this.app.firestore()
         this.firestore.settings({
             host: 'localhost:8080',
@@ -17,15 +19,17 @@ export default class Seeder {
         })
     }
 
-    async cleanUp(ref: firestore.DocumentReference) {
+    cleanUp(ref: firestore.DocumentReference) {
         this.refs.push(ref)
     }
 
-     async up(numberOfDocs: number = 10) {
+    async up(numberOfDocs: number = 10) {
     }
 
     async down() {
-        // const batch = firestore().batch()
+        const batch = this.firestore.batch()
+        this.refs.forEach((ref) => batch.delete(ref))
+        await batch.commit()
     }
 
     getRefs() {
