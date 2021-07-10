@@ -6,8 +6,7 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v2
       - name: Install dependencies
-        with:
-          args: cd functions && npm install && cd ..
+        run: cd functions && npm install && cd ..
       - name: Testing with Firebase
         uses: w9jds/firebase-action@master
         with:
