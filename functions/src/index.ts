@@ -11,8 +11,10 @@ if (process.env.NODE_ENV === "TESTING") {
   db.settings({
     host: "localhost:8080",
     ssl: false,
-  })
+  }),
+  process.env.FIREBASE_AUTH_EMULATOR_HOST = "localhost:9099";
 }
+
 
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
